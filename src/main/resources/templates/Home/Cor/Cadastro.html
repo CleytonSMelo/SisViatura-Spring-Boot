@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymelaef.org"
+	xmlns:sec="http://www.thymelaef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <!-- Custom fonts for this template-->
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" media="screen">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    
+    <!-- Custom styles for this template-->
+    <link th:href="@{/meucss/css/sb-admin-2.min.css}" rel="stylesheet">
+
+    <!-- Para ajustar imagem do logo -->
+    <style type="text/css">
+    .img2{
+    vertical-align: middle;
+    border-style: none;
+    width: 150px;
+    }
+    .img3{
+    vertical-align: middle;
+    border-style: none;
+    width: 65px;
+    }
+    
+    .rotacao{
+    transform: rotate(0deg);
+    }
+    
+    .mrg{
+    margin-left: 0rem!important;
+    margin-right: 0rem!important;
+    }
+    
+    .butaodireita{
+     float: right;
+    }
+    </style>   
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>  
+    <script>
+    $(document).ready(function() {
+        //$('#example').DataTable();
+        $('#example').DataTable( {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            }
+        } );
+    } );
+    </script>
+    <script>
+    $(document).ready(function() {
+    	  $(".alert").fadeTo(1, 1).removeClass('hidden');
+    	  window.setTimeout(function() {
+    	    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+    	        $(".alert").addClass('hidden');
+    	    });
+    	  }, 1000); 
+    });
+    </script>
+    
+<title>Cadastro de Cor</title>
+</head>
+<body id="page-top">
+   <!-- Page Wrapper -->
+   <div id="wrapper">
+   
+    <div class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background-image: none; background-color: #000000;" id="accordionSidebar">
+     <!-- Sidebar lateral Fragmento-->
+     <div th:insert="Fragmentos/BarraNavegacao2 :: navbar"></div>
+    </div>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+               <!-- Navebar Top page Fragmento-->
+               <div th:insert="Fragmentos/BarraNavegacao2 :: navbar2"></div>
+               
+                <!-- Inicio do conteudo da pagina -->
+                <div class="container-fluid">
+                 <c th:if="${msg != null}">
+					<div class="alert alert-success alert-dismissible fade show"
+						role="alert">
+						<strong><span th:text="${msg}"></span></strong> 
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				 </c>
+				 
+                  <h1>Cadastro de Cores</h1>
+                                   
+					<form th:action="@{/Home/Cor/SalvarCor}" method="post" th:object="${corobj}">
+					    <input type="hidden" name="id" class="form-control" id="inputId" th:field="*{id}" readonly="readonly">
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="inputNome">Cor </label> <input type="text"
+									class="form-control" id="inputNome" placeholder="Cor" name="nome" th:field="*{Nome}" required="required">
+							</div>
+
+                           
+						</div>																                       
+												
+						<button type="submit" class="btn btn-primary butaodireita">Cadastrar</button>
+					</form>
+                    <br>
+                    <br>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Cores Cadastradas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-bordered"  width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>                                                                                 
+                                            <th>COR VEICULAR</th>                                                                                                                               
+                                            <th>ACAO</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+										<tr th:each="cor : ${cores}">											
+											<td th:text="${cor.nome}"></td>																																								
+											<td>
+											<a th:href="@{/Home/Cor/EditarCor/{idCor}(idCor=${cor.id})}" title="Editar" class="fas fa-edit"></a>
+											<a id="remover" th:href="@{/Home/Cor/RemoverCor/{idCor}(idCor=${cor.id})}" title="Remover" class="fas fa-trash-alt"></a>
+											</td>
+										</tr>
+									</tbody>									
+                                </table>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+               
+               </div>
+            </div>
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Remover Cor</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">Deseja Realmente Deletar este Cor?</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Fechar</button>
+							<a id="btnRemover" href="" class="btn btn-primary">Remover
+								 </a>
+						</div>
+					</div>
+				</div>
+			</div>
+              
+               <!-- CopyRight Fragmento-->
+               <div th:insert="Fragmentos/BarraNavegacao2 :: copyrig"></div>
+    
+   </div>
+</div>
+<!-- Scroll to Top Button + Modal logout fragmento-->
+<div th:insert="Fragmentos/BarraNavegacao2 :: topPageModal"></div>
+   
+<!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+    <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!--     Page level custom scripts -->
+    <script th:src="@{/js/demo/datatables-demo.js}"></script>
+    
+    <script th:src="@{/js/cor/lista.js}"></script>
+    
+</body>
+</html>

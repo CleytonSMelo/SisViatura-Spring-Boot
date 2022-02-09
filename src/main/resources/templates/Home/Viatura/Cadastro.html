@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymelaef.org"
+	xmlns:sec="http://www.thymelaef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" media="screen">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    
+    <!-- Custom styles for this template-->
+    <link th:href="@{/meucss/css/sb-admin-2.min.css}" rel="stylesheet">
+
+    <!-- Para ajustar imagem do logo -->
+    <style type="text/css">
+    .img2{
+    vertical-align: middle;
+    border-style: none;
+    width: 150px;
+    }
+    .img3{
+    vertical-align: middle;
+    border-style: none;
+    width: 65px;
+    }
+    
+    .rotacao{
+    transform: rotate(0deg);
+    }
+    
+    .mrg{
+    margin-left: 0rem!important;
+    margin-right: 0rem!important;
+    }
+    
+    .butaodireita{
+     float: right;
+    }
+    </style> 
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous"></script>    
+    
+    <script>
+    $(document).ready(function() {
+    	  $(".alert").fadeTo(1, 1).removeClass('hidden');
+    	  window.setTimeout(function() {
+    	    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+    	        $(".alert").addClass('hidden');
+    	    });
+    	  }, 1000); 
+    	});
+    
+    var somenteNumeros = function(event) {
+		  return ((event.charCode >= 48 && event.charCode <= 57))
+	}
+    
+    
+    function maiuscula(z){
+        v = z.value.toUpperCase();
+        z.value = v;
+    }
+    
+    </script>
+    
+<title>Cadastro de Viatura</title>
+</head>
+<body id="page-top">
+     <!-- Page Wrapper -->
+     <div id="wrapper">
+       
+     <div class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background-image: none; background-color: #000000;" id="accordionSidebar">
+       <!-- Sidebar lateral Fragmento-->
+       <div th:insert="Fragmentos/BarraNavegacao2 :: navbar"></div>
+     </div>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+               <!-- Navebar Top page Fragmento-->
+               <div th:insert="Fragmentos/BarraNavegacao2 :: navbar2"></div>
+               
+                <!-- Inicio do conteudo da pagina -->
+                <div class="container-fluid">
+                
+                <c th:if="${msgErro != null}">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<strong><span th:text="${msgErro}"></span></strong> 
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				 </c>
+                
+                  <h1 class="h3 mb-2 text-gray-800">Cadastro de Viatura</h1>
+                    
+					<form th:action="@{/Home/Viatura/SalvarViatura}" method="post" th:object="${viaturaobj}" enctype="multipart/form-data">
+					    <input type="hidden" name="id" class="form-control" id="inputId" th:field="*{id}" readonly="readonly">
+						<div class="form-row">
+							<div class="form-group col-md-3">
+								<label for="inputNome">Placa Oficial </label> <input type="text" onkeyup="maiuscula(this)"
+									class="form-control" id="placa-oficial" placeholder="Placa Oficial" name="placaoficial" th:field="*{Placaoficial}" required="required">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputNome">Placa Reservada</label> <input type="text" onkeyup="maiuscula(this)"
+									class="form-control" id="placa-reservada" placeholder="Placa Reservada" name="placareservada" th:field="*{Placareservada}" required="required">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputNome">Cota Semanal em Litros</label> <input type="text" onkeypress="return keypressed4( this , event );"
+									class="form-control" id="cota-semanal" placeholder="Cota Semanal" name="cataSemanal" th:field="*{CotaSemanal}" required="required">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="inputNome">Cota Extra em Litros</label> <input type="text" onkeypress="return keypressed5( this , event );"
+									class="form-control" id="cota-extra" placeholder="Cota Extra" name="cotaExtra" th:field="*{CotaExtra}" required="required">
+							</div>
+							
+						</div>
+						<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="setor" class="active">Cor</label> <select required="required"
+								class="form-control" th:field="*{cor}" id="cor">
+								<option value=""  selected="selected"> Selecione...
+								<option
+									th:each="s : ${cores}" th:value="${s.id}" th:text="${s.nome}">
+							</select>
+						</div>
+						
+						<div class="form-group col-md-3">
+							<label for="setor" class="active">Modelo</label> <select required="required"
+								class="form-control" th:field="*{modelo}" id="modelo">
+								<option value=""  selected="selected"> Selecione...
+								<option
+									th:each="s : ${modelos}" th:value="${s.id}" th:text="${s.nome}">
+							</select>
+						</div>							
+						
+						<div class="form-group col-md-3">
+							<label for="setor" class="active">Lotação</label> <select required="required"
+								class="form-control" th:field="*{lotacao}" id="setor">
+								<option value=""  selected="selected"> Selecione...
+								<option
+									th:each="s : ${setores}" th:value="${s.id}" th:text="${s.nome}">
+							</select>
+						</div>		
+						
+						<div class="form-group col-md-3">
+							<label for="setor" class="active">Responsavel</label> <select required="required"
+								class="form-control" th:field="*{responsavel}" id="responsavel">
+								<option value=""  selected="selected"> Selecione...
+								<option
+									th:each="r : ${responsavel}" th:value="${r.id}" th:text="${r.nome}">
+							</select>
+						</div>					
+
+						</div>
+						
+                      
+                        <div class="form-row">
+                         
+						<div class="form-group col-md-3">
+							<label for="role" class="active">Tipo Viatura</label> <select required="required"
+								class="form-control" th:field="*{tipoviatura}" id="tipoviatura">
+								<option value=""  selected="selected"> Selecione...
+								<option
+									th:each="r : ${T(sisint.springboot.enumerador.TipoViatura).values()}"
+									th:value="${r}" th:text="${r.nome}">
+							</select>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="role" class="active">Tipo Combustivel</label> <select required="required"
+								class="form-control" th:field="*{tipocombustivel}" id="tipocombustivel">
+								<option value=""  selected="selected"> Selecione...
+								<option
+									th:each="r : ${T(sisint.springboot.enumerador.TipoCombustivel).values()}"
+									th:value="${r}" th:text="${r.nome}">
+							</select>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="role" class="active">Naturaza do Viatura</label> <select required="required"
+								class="form-control" th:field="*{naturezaviatura}" id="naturezaviatura">
+								<option value=""  selected="selected"> Selecione...
+								<option
+									th:each="r : ${T(sisint.springboot.enumerador.NaturezaViatura).values()}"
+									th:value="${r}" th:text="${r.nome}">
+							</select>
+						</div>
+						
+						<div class="form-group col-md-3">
+							<label for="role" class="active">Ano</label> <select required="required"
+								class="form-control" th:field="*{ano}" id="ano">
+								<option value=""  selected="selected"> Selecione um Ano </option>
+								                   <option value="1995"> 1995 </option>
+                                                   <option value="1996"> 1996 </option>
+                                                   <option value="1997"> 1997 </option>
+                                                   <option value="1998"> 1998 </option>
+                                                   <option value="1999"> 1999 </option>
+                                                   <option value="2000"> 2000 </option>
+                                                   <option value="2001"> 2001 </option>
+                                                   <option value="2002"> 2002 </option>
+                                                   <option value="2003"> 2003 </option>
+								                   <option value="2004"> 2004 </option>
+                                                   <option value="2005"> 2005 </option>
+                                                   <option value="2006"> 2006 </option>
+                                                   <option value="2007"> 2007 </option>
+                                                   <option value="2008"> 2008 </option>
+                                                   <option value="2009"> 2009 </option>
+                                                   <option value="2010"> 2010 </option>
+                                                   <option value="2011"> 2011 </option>
+                                                   <option value="2012"> 2012 </option>
+                                                   <option value="2013"> 2013 </option>
+                                                   <option value="2014"> 2014 </option>
+                                                   <option value="2015"> 2015 </option>
+                                                   <option value="2016"> 2016 </option>
+                                                   <option value="2017"> 2017 </option>
+                                                   <option value="2018"> 2018 </option>
+                                                   <option value="2019"> 2019 </option>
+                                                   <option value="2020"> 2020 </option>
+                                                   <option value="2021"> 2021 </option>
+                                                   <option value="2022"> 2022 </option>
+                                                   <option value="2023"> 2023 </option>
+                                                   <option value="2024"> 2024 </option>
+                                                   <option value="2025"> 2025 </option>
+                                                   <option value="2026"> 2026 </option>
+                                                   <option value="2027"> 2027 </option>
+                                                   <option value="2028"> 2028 </option>
+                                                   <option value="2029"> 2029 </option>
+                                                   <option value="2030"> 2030 </option>  
+							</select>
+						</div>
+						
+						</div>
+						<div class="form-row">
+						   <div class="form-group col-md-3">
+								<label for="inputNome">KM Inicial</label> <input type="text" onkeypress="return keypressed3( this , event );"
+									class="form-control" id="km-inicial" placeholder="KM inicial" name="kmInicial" th:field="*{KmInicial}" required="required">
+							</div>
+							
+							<div class="form-group col-md-3">
+								<label for="inputNome">KM por Litro</label> <input type="text" onkeypress="return keypressed2( this , event );"
+									class="form-control" id="km-litro" placeholder="KM por Litro" name="kmLitro" th:field="*{KmLitro}" required="required">
+							</div>
+							
+							<div class="form-group col-md-3">
+								<label for="inputNome">Valor Investido</label> <input type="text" onkeypress="return keypressed1( this , event );"
+									class="form-control" id="valor-inves" placeholder="Valor Investido" name="valorInvestido" th:field="*{ValorInvestido}" required="required">
+							</div>
+							
+							<div class="form-group col-md-3">
+								<label for="inputNome">Valor de Mercado</label> <input type="text" onkeypress="return keypressed( this , event );"
+									class="form-control" id="valor-mercado" placeholder="Valor de Mercado" name="valorMercado" th:field="*{ValorMercado}" required="required">
+							</div>
+						</div>
+						
+						<div class="form-row">
+						<div class="form-group col-md-3">
+								<label for="inputNome">Capacidade do Tanque em Litros</label> <input type="text" onkeypress="return keypressed6( this , event );"
+									class="form-control" id="capacidadetanque" placeholder="Capacidade do Tanque" name="capacidadetanque" th:field="*{Capacidadetanque}" required="required">
+							</div>
+						
+						 <div class="form-group col-md-3">
+                              <label for="exampleFormControlFile1">Foto</label>
+                              <input type="file" class="form-control-file" name="foto" id="foto">
+                            </div>
+						</div>
+												
+						<button id="btnSalvar" type="submit" class="btn btn-primary butaodireita">Cadastrar</button>
+					</form>
+
+                    
+				</div>
+            </div>
+              
+               <!-- CopyRight Fragmento-->
+               <div th:insert="Fragmentos/BarraNavegacao2 :: copyrig"></div>
+    
+   </div>
+</div>
+<!-- Scroll to Top Button + Modal logout fragmento-->
+<div th:insert="Fragmentos/BarraNavegacao2 :: topPageModal"></div>
+   
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+    
+     <script th:src="@{/js/viatura/Lista.js}"></script>
+</body>
+</html>

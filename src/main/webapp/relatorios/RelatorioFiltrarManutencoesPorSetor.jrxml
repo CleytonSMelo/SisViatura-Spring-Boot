@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFiltrarManutencoesPorSetor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b7adb7e-ce8b-46bb-b855-296cc82c683f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dto"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dtAte" class="java.lang.String">
+		<fieldDescription><![CDATA[dtAte]]></fieldDescription>
+	</field>
+	<field name="numManutencao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numManutencao]]></fieldDescription>
+	</field>
+	<field name="setorManutencao" class="java.lang.String">
+		<fieldDescription><![CDATA[setorManutencao]]></fieldDescription>
+	</field>
+	<field name="tecnicoResponsavel" class="java.lang.String">
+		<fieldDescription><![CDATA[tecnicoResponsavel]]></fieldDescription>
+	</field>
+	<field name="imagem" class="java.lang.String">
+		<fieldDescription><![CDATA[imagem]]></fieldDescription>
+	</field>
+	<field name="totalRegistro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[totalRegistro]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="dataFechamento" class="java.lang.String">
+		<fieldDescription><![CDATA[dataFechamento]]></fieldDescription>
+	</field>
+	<field name="dataEmissao" class="java.lang.String">
+		<fieldDescription><![CDATA[dataEmissao]]></fieldDescription>
+	</field>
+	<field name="userEmissor" class="java.lang.String">
+		<fieldDescription><![CDATA[userEmissor]]></fieldDescription>
+	</field>
+	<field name="dtDe" class="java.lang.String">
+		<fieldDescription><![CDATA[dtDe]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="6" width="420" height="20" uuid="0a4eaeea-d77d-4283-bd9b-f35b2b713243"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[GOVERNO DO ESTADO DO RIO GRANDE DO NORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="28" width="420" height="20" uuid="fa6081af-a3f2-4919-a50e-e6d73052b394"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POLICIA CIVIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="50" width="420" height="18" uuid="813319cf-b2ec-4a5f-80ba-fb991c2f6058"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[SETOR DE INFORMÁTICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="75" width="554" height="16" uuid="b1bbfd45-5541-42c1-8ec5-7e6ed0e151db"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top"/>
+				<text><![CDATA[______________________________________________________________________________________________________]]></text>
+			</staticText>
+			<image>
+				<reportElement x="30" y="6" width="65" height="69" uuid="8e4f62e1-2a33-49e7-847b-8b769385dda0"/>
+				<imageExpression><![CDATA[$F{imagem}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="20" uuid="ea2c97b4-a7a0-4720-a8b1-7970a4e988aa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Período de :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="30" height="20" uuid="201e0e0c-05a1-4823-9761-363769fadfef"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Até :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="80" height="20" uuid="497a8d29-ccce-4e78-b830-d2c241cf7b1d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Data Emissão:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="20" width="50" height="20" uuid="dec18c68-2548-4d96-ba0b-075aa917840f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Emissor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="80" height="20" uuid="1cdb7aa2-fac9-411d-af76-4ef0e07c8749"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Setor Filtrado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="20" uuid="ac9b9f71-025a-4ffa-a225-7d6b15d32655"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtAte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="80" height="20" uuid="3b9cb82b-59b4-4061-a2da-fd6cd70b0f2d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtDe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="114" height="20" uuid="f43a087b-05d4-4a49-a30a-4871eaa598c5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataEmissao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="20" width="144" height="20" uuid="dcba3593-8ef0-4f30-91ea-fb6d78381c97"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userEmissor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="20" width="200" height="20" uuid="824fd903-fec9-4aa5-983a-50edcc23ca83"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{setorManutencao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="176a61f7-d050-4239-a14a-0285f32a9ad0">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Setor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="113" height="30" uuid="1a97b562-6898-45cf-ad2f-a7d9a354709a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data De Finalização]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="0" width="137" height="30" uuid="2fb2edf6-79e6-4dd9-8ddd-7849c1d0a101">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Técnico Responsável]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="204" height="30" uuid="ee04db55-b392-4a14-a111-3536c114ded6">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Manutenção]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="72f82ee0-9415-43b2-a149-9c62b436eeb0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e336b7db-e948-4748-9e30-79be8ac32ab1"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{setorManutencao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="112" height="30" uuid="52749aad-5add-4d56-8712-24c382c1ac0e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6108e9c-5704-4a64-be0a-2b961b299a54"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataFechamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="212" y="0" width="138" height="30" uuid="0a6373cd-f94a-4667-959c-4eb9b43c932a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aa4e1c13-7d89-4bd6-9a0d-85189ae1b0d6"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tecnicoResponsavel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="204" height="30" uuid="7ee4e9af-2a97-46a2-8ff0-35bd882930fe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b2e352fe-fc9e-427e-9cc5-7beca78d528c"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="140" height="30" uuid="25b7b0b2-39ac-47c1-86e5-9201c0ad9192"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Manutenções:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="0" width="72" height="30" uuid="6cc5a18b-4ee0-47f9-92c9-c32f25d5461f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalRegistro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
