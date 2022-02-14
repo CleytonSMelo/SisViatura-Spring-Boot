@@ -234,6 +234,18 @@ public class ViaturaControler {
 		}
 	}
 	
+	@RequestMapping("**/Home/Viatura/RemoverFoto/{fotoid}")
+	public String removerFotos(HttpServletRequest request, HttpServletResponse response, @PathVariable("fotoid") Long fotoid) {
+		Fotos foto = fotoRepository.findFotosByid(fotoid);
+		Viatura v = viaturaRepository.findViaturaByid(foto.getViatura().getId());
+		String nome = "C:/fotos/viatura/"+foto.getCaminho();  
+		File f = new File(nome);  
+		f.delete();
+		
+		fotoRepository.delete(foto);
+		return "redirect:/Home/Viatura/DetalhesViatura/"+v.getId();
+	}
+	
 	@RequestMapping(value = "**/Home/Viatura/LogViatura/{idViatura}", method = RequestMethod.GET)
 	public ModelAndView logViatura(@PathVariable("idViatura") Long idViatura) {		
 	    List<LogViatura> lg = lgRepository.findLogByData(idViatura);		

@@ -174,7 +174,7 @@
 								class="form-control" th:field="*{tipoviatura}" id="tipoviatura">
 								<option value=""  selected="selected"> Selecione...
 								<option
-									th:each="r : ${T(sisint.springboot.enumerador.TipoViatura).values()}"
+									th:each="r : ${T(sisviatura.springboot.enumerador.TipoViatura).values()}"
 									th:value="${r}" th:text="${r.nome}">
 							</select>
 						</div>
@@ -183,7 +183,7 @@
 								class="form-control" th:field="*{tipocombustivel}" id="tipocombustivel">
 								<option value=""  selected="selected"> Selecione...
 								<option
-									th:each="r : ${T(sisint.springboot.enumerador.TipoCombustivel).values()}"
+									th:each="r : ${T(sisviatura.springboot.enumerador.TipoCombustivel).values()}"
 									th:value="${r}" th:text="${r.nome}">
 							</select>
 						</div>
@@ -192,7 +192,7 @@
 								class="form-control" th:field="*{naturezaviatura}" id="naturezaviatura">
 								<option value=""  selected="selected"> Selecione...
 								<option
-									th:each="r : ${T(sisint.springboot.enumerador.NaturezaViatura).values()}"
+									th:each="r : ${T(sisviatura.springboot.enumerador.NaturezaViatura).values()}"
 									th:value="${r}" th:text="${r.nome}">
 							</select>
 						</div>

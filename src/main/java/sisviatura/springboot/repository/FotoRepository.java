@@ -25,4 +25,7 @@ public interface FotoRepository extends CrudRepository<Fotos, Long> {
 	@Query("select f from Fotos f")
 	List<Fotos> findFotos();
 	
+	@Query("select f from Fotos f where f.caminho like ?1")
+	Fotos findFotosByNome(String id);
+	
 }
